@@ -27,3 +27,14 @@ export type TChannelData = {
 	message: string;
 	buttons?: TKeyboardButton[];
 };
+
+export interface IForms {
+	_id?: string;
+	activeChannels: TChannel[];
+	vk: TChannelData;
+	telegram: TChannelData;
+	whatsApp: TChannelData;
+	sms: TChannelData;
+}
+
+export type TFetchStatus = 'idle' | 'pending' | 'success' | 'error';

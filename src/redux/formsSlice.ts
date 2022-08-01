@@ -2,15 +2,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Types
-import { TChannel, TChannelData, TKeyboardButton } from '../types';
+import { IForms, TChannel, TKeyboardButton } from '../types';
 
-interface IFormsSlice {
-	activeChannels: TChannel[];
-	vk: TChannelData;
-	telegram: TChannelData;
-	whatsApp: TChannelData;
-	sms: TChannelData;
-}
+interface IFormsSlice extends IForms {}
 
 const initialState: IFormsSlice = {
 	activeChannels: [],
@@ -35,10 +29,31 @@ export const formsSlice = createSlice({
 	name: 'forms',
 	initialState,
 	reducers: {
+		setCurrentForm: (state, action: PayloadAction<IForms>) => {
+			state = action.payload;
+		},
 		addChannel: (state, action: PayloadAction<TChannel>) => {
 			if (!state.activeChannels.includes(action.payload)) {
 				state.activeChannels.push(action.payload);
 			}
+		},
+		resetForm: (state) => {
+			state.activeChannels = [];
+			state.vk = {
+				message: '',
+				buttons: [],
+			};
+			state.telegram = {
+				message: '',
+				buttons: [],
+			};
+			state.whatsApp = {
+				message: '',
+				buttons: [],
+			};
+			state.sms = {
+				message: '',
+			};
 		},
 		removeChannel: (state, action: PayloadAction<TChannel>) => {
 			state.activeChannels = state.activeChannels.filter(
@@ -92,6 +107,8 @@ export const formsSlice = createSlice({
 });
 
 export const {
+	setCurrentForm,
+	resetForm,
 	addChannel,
 	removeChannel,
 	addButton,

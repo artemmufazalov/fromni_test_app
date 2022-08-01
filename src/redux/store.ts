@@ -4,9 +4,10 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 // Slices
 import formsReducer from './formsSlice';
+import draftsReducer from './draftsSlice';
 
 const store = configureStore({
-	reducer: { forms: formsReducer },
+	reducer: { forms: formsReducer, drafts: draftsReducer },
 });
 
 export type AppDispatch = typeof store.dispatch;

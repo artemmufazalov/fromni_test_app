@@ -37,3 +37,27 @@
 		}
 	}
 }
+
+.newCampaign__success {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	font-size: 18px;
+	margin-left: 10px;
+
+	a {
+		text-decoration: none;
+		color: black;
+
+		&:hover {
+			color: #4fe24a;
+		}
+	}
+
+	span {
+		cursor: pointer;
+		&:hover {
+			color: #4fe24a;
+		}
+	}
+}
