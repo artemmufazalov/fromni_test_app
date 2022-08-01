@@ -46,8 +46,8 @@
 	margin-left: 10px;
 
 	a {
-		text-decoration: none;
-		color: black;
+		text-decoration: underline;
+		color: #0000ee;
 
 		&:hover {
 			color: #4fe24a;
@@ -56,6 +56,10 @@
 
 	span {
 		cursor: pointer;
+
+		text-decoration: underline;
+		color: #0000ee;
+
 		&:hover {
 			color: #4fe24a;
 		}

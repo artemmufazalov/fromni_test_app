@@ -32,13 +32,20 @@ const Drafts = () => {
 			)}
 
 			{status === 'pending' && <div>Загрузка</div>}
-			{status === 'success' && (
+
+			{status === 'success' && (!drafts || drafts.length === 0) && (
+				<div>Вы еще не сохраняли кампаний!</div>
+			)}
+
+			{status === 'success' && drafts.length > 0 && (
 				<span className="draft">
 					<span className="draft__cell">ID</span>
 					<span className="draft__cell">Каналы</span>
 				</span>
 			)}
+
 			{status === 'success' &&
+				drafts.length > 0 &&
 				drafts.map((d) => <Draft form={d} key={d._id} />)}
 		</div>
 	);

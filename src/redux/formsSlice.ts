@@ -30,7 +30,14 @@ export const formsSlice = createSlice({
 	initialState,
 	reducers: {
 		setCurrentForm: (state, action: PayloadAction<IForms>) => {
-			state = action.payload;
+			const newForm = action.payload;
+
+			state.activeChannels = newForm.activeChannels;
+			state._id = newForm._id;
+			state.vk = newForm.vk;
+			state.telegram = newForm.telegram;
+			state.whatsApp = newForm.whatsApp;
+			state.sms = newForm.sms;
 		},
 		addChannel: (state, action: PayloadAction<TChannel>) => {
 			if (!state.activeChannels.includes(action.payload)) {
@@ -87,7 +94,6 @@ export const formsSlice = createSlice({
 			let ch = action.payload.channel,
 				id = action.payload.id;
 
-			console.log(action.payload.id);
 			if (ch !== 'sms') {
 				state[ch].buttons = state[ch].buttons?.filter(
 					(b) => b.id !== id

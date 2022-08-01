@@ -1,6 +1,7 @@
 // Libs
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import qs from 'qs';
 
 // Components
 import AddChannel from '../components/AddChannel';
@@ -13,7 +14,11 @@ import { TChannel } from '../types';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import { addChannel, resetForm } from '../redux/formsSlice';
 import { resetSaveCampaingStatus } from '../redux/draftsSlice';
-import { saveNewCampaign } from '../redux/thunks';
+import {
+	deleteCampaign,
+	fetchSingleCampaign,
+	saveNewCampaign,
+} from '../redux/thunks';
 import {
 	selectActiveChannels,
 	selectForms,
@@ -21,7 +26,27 @@ import {
 } from '../redux/selectors';
 
 const NewCampaign = () => {
-	const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch(),
+		navigate = useNavigate();
+
+	const { search } = useLocation();
+	const id =
+		qs.parse(search)['id'] ||
+		qs.parse(search)['?id'] ||
+		qs.parse(search)['&id'];
+
+	React.useEffect(() => {
+		const fetchSingle = async () => {
+			dispatch(fetchSingleCampaign(id as string));
+		};
+		if (id) {
+			fetchSingle();
+		}
+	}, [id, dispatch]);
+
+	React.useEffect(() => {
+		dispatch(resetSaveCampaingStatus());
+	}, [id, dispatch]);
 
 	const activeChannels: TChannel[] = useAppSelector(selectActiveChannels),
 		forms = useAppSelector(selectForms),
@@ -29,9 +54,17 @@ const NewCampaign = () => {
 
 	const onSave = async () => {
 		dispatch(saveNewCampaign(forms));
+		dispatch(resetForm());
+	};
+
+	const onDelete = async () => {
+		if (forms._id) {
+			dispatch(deleteCampaign(forms._id));
+		}
 	};
 
 	const onReset = () => {
+		navigate('/');
 		dispatch(resetForm());
 		dispatch(resetSaveCampaingStatus());
 	};
@@ -44,7 +77,7 @@ const NewCampaign = () => {
 			)}
 			{status === 'success' && (
 				<div className="newCampaign__success">
-					<h3>Кампания успешно сохранена</h3>
+					<h3>Кампания успешно обновлена</h3>
 					<Link to="/drafts">Ко всем кампаниям</Link>
 					<span onClick={onReset}>Новая кампания</span>
 				</div>
@@ -70,8 +103,11 @@ const NewCampaign = () => {
 					)}
 					{activeChannels.length > 0 ? (
 						<span className="newCampaign__buttons">
-							{/* <button>Запустить</button> */}
+							<button onClick={onReset}>Новая</button>
 							<button onClick={onSave}>Сохранить</button>
+							{forms._id && (
+								<button onClick={onDelete}>Удалить</button>
+							)}
 						</span>
 					) : (
 						''

@@ -5,7 +5,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IForms, TFetchStatus } from '../types';
 
 // Thunks
-import { fetchAllCampaigns, saveNewCampaign } from './thunks';
+import { deleteCampaign, fetchAllCampaigns, saveNewCampaign } from './thunks';
 
 interface IDraftsSlice {
 	baseUrl: string;
@@ -49,6 +49,15 @@ export const draftsSlice = createSlice({
 			state.saveCampaingStatus = 'success';
 		});
 		builder.addCase(saveNewCampaign.rejected, (state) => {
+			state.saveCampaingStatus = 'error';
+		});
+		builder.addCase(deleteCampaign.pending, (state) => {
+			state.saveCampaingStatus = 'pending';
+		});
+		builder.addCase(deleteCampaign.fulfilled, (state) => {
+			state.saveCampaingStatus = 'success';
+		});
+		builder.addCase(deleteCampaign.rejected, (state) => {
 			state.saveCampaingStatus = 'error';
 		});
 	},
