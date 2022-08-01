@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.8d463c2c.css",
-    "main.js": "/static/js/main.f122d5bc.js",
-    "index.html": "/index.html",
-    "main.8d463c2c.css.map": "/static/css/main.8d463c2c.css.map",
-    "main.f122d5bc.js.map": "/static/js/main.f122d5bc.js.map"
+    "main.css": "/fromni_test_app/static/css/main.8d463c2c.css",
+    "main.js": "/fromni_test_app/static/js/main.f122d5bc.js",
+    "index.html": "/fromni_test_app/index.html",
+    "main.8d463c2c.css.map": "/fromni_test_app/static/css/main.8d463c2c.css.map",
+    "main.f122d5bc.js.map": "/fromni_test_app/static/js/main.f122d5bc.js.map"
   },
   "entrypoints": [
     "static/css/main.8d463c2c.css",
