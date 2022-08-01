@@ -1,5 +1,6 @@
 // Libs
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 // Types
 import { TButtonTypes, TChannel } from '../types';
@@ -19,7 +20,6 @@ interface IAddMediaProps {
 const AddAnswerButton: React.FC<IAddMediaProps> = ({ channel }) => {
 	const chData = useAppSelector(selectChannelFormData(channel));
 
-	const idRef = React.useRef(0);
 	const dispatch = useAppDispatch();
 
 	const [error, setError] = React.useState('');
@@ -133,12 +133,11 @@ const AddAnswerButton: React.FC<IAddMediaProps> = ({ channel }) => {
 		dispatch(
 			addButton({
 				channel,
-				button: { id: idRef.current, message, type, isLink },
+				button: { id: uuidv4(), message, type, isLink },
 			})
 		);
 		setError('');
 		setMessage('');
-		idRef.current = idRef.current + 1;
 	};
 
 	return (

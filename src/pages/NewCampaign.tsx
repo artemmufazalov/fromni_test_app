@@ -35,6 +35,8 @@ const NewCampaign = () => {
 		qs.parse(search)['?id'] ||
 		qs.parse(search)['&id'];
 
+	const [addCampaignError, setAddCampaignError] = React.useState('');
+
 	React.useEffect(() => {
 		const fetchSingle = async () => {
 			dispatch(fetchSingleCampaign(id as string));
@@ -53,8 +55,17 @@ const NewCampaign = () => {
 		status = useAppSelector(selectSaveStatus);
 
 	const onSave = async () => {
-		dispatch(saveNewCampaign(forms));
-		dispatch(resetForm());
+		if (
+			activeChannels.filter((name) => forms[name].message.length > 0)
+				.length === activeChannels.length
+		) {
+			dispatch(saveNewCampaign(forms));
+			dispatch(resetForm());
+		} else {
+			setAddCampaignError(
+				'Сообщения для выбранных каналов не могут быть пустыми!'
+			);
+		}
 	};
 
 	const onDelete = async () => {
@@ -89,6 +100,9 @@ const NewCampaign = () => {
 						{activeChannels.map((ch, idx) => (
 							<InputForm channel={ch} key={idx} />
 						))}
+						<div className="newCampaign__error">
+							{addCampaignError}
+						</div>
 					</div>
 
 					{activeChannels.length >= 4 ? (

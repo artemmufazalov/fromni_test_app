@@ -9,7 +9,7 @@ import { removeButton } from '../redux/formsSlice';
 import { useAppDispatch } from '../redux/store';
 
 interface IButtonProps extends TKeyboardButton {
-	id: number;
+	id: string;
 	channel: TChannel;
 }
 

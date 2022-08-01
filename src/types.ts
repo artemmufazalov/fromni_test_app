@@ -17,7 +17,7 @@ export interface ISingleChannelMeta {
 export type TChannelsMeta = Record<TChannel, ISingleChannelMeta>;
 
 export type TKeyboardButton = {
-	id: number;
+	id: string;
 	type: 'standart' | 'inline';
 	isLink?: boolean;
 	message: string;

@@ -88,7 +88,7 @@ export const formsSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				channel: TChannel;
-				id: number;
+				id: string;
 			}>
 		) => {
 			let ch = action.payload.channel,
