@@ -1,0 +1,14 @@
+.header {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	text-align: start;
+	font-size: 22px;
+	padding: 5px;
+	a {
+		text-decoration: none;
+		color: black;
+		padding: 30px;
+	}
+	.active {
+		color: #4fe24a;
+	}
+}

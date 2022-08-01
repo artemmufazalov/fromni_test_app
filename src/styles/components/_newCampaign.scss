@@ -1,0 +1,39 @@
+.newCampaign {
+	&__formsWrapper {
+		display: flex;
+		flex-direction: column;
+		// flex-direction: row;
+		// flex-wrap: wrap;
+
+		padding-bottom: 20px;
+	}
+
+	&__buttons {
+		display: flex;
+
+		align-items: center;
+		justify-content: start;
+
+		border-top: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+		padding: 20px;
+
+		button {
+			display: inline-block;
+
+			border: 2px solid gray;
+			background-color: white;
+			height: 40px;
+			font-size: 22px;
+			cursor: pointer;
+
+			margin-left: 10px;
+			margin-right: 10px;
+
+			&:hover,
+			:active {
+				border: 2px solid #4fe24a;
+			}
+		}
+	}
+}

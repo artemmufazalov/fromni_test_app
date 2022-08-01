@@ -1,0 +1,61 @@
+.inputForm {
+	display: flex;
+	flex-direction: column;
+	// width: 310px;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-top: 20px;
+
+	border: 1px solid rgba($color: #000000, $alpha: 0.2);
+	padding: 20px;
+
+	&__top {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 310px;
+
+		img {
+			height: 30px;
+			width: 30px;
+			vertical-align: bottom;
+			margin-right: 10px;
+			margin-left: 5px;
+		}
+		h2 {
+			display: inline;
+		}
+
+		&__delete {
+			cursor: pointer;
+			opacity: 0.6;
+
+			&:hover,
+			active {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__mainMessage {
+		textarea {
+			height: 200px;
+			width: 300px;
+		}
+	}
+
+	&__mainMessageError {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: red;
+	}
+
+	&__keyboardButtonsContainer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		min-height: 20px;
+		width: 100%;
+	}
+}
